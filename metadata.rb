@@ -7,4 +7,4 @@ version          "0.1.0"
 
 %w(ubuntu debian redhat centos).each do |os|
   supports os
-en
+end
