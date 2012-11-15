@@ -5,7 +5,7 @@ action :set do
     group "root"
     mode 0644
     content "#{settings_content}\n"
-    notifies :start, resources(:service => "procps")
+    notifies :restart, resources(:service => "procps")
   end
 
 end
