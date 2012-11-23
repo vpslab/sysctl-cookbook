@@ -1,12 +1,14 @@
 action :set do
 
-  file settings_path do
+  settings = file settings_path do
     owner "root"
     group "root"
     mode 0644
     content "#{settings_content}\n"
     notifies :restart, resources(:service => "procps")
   end
+
+  new_resource.updated_by_last_action(true) if settings.updated_by_last_action?
 
 end
 
