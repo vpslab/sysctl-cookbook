@@ -1,5 +1,5 @@
 case node["platform"]
-when "rhel", "centos"
+when "rhel", "centos", "amazon"
   directory "/etc/sysctl.d" do
     group "root"
     owner "root"

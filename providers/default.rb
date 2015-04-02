@@ -8,7 +8,7 @@ action :set do
     case node["platform"]
     when "debian", "ubuntu"
       notifies :restart, resources(:service => "procps")
-    when "rhel", "centos"
+    when "rhel", "centos", "amazon"
       notifies :run, resources(:execute => "apply-sysctl")
     end
   end
