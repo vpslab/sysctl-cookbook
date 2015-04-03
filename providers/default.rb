@@ -5,7 +5,12 @@ action :set do
     group "root"
     mode 0644
     content "#{settings_content}\n"
-    notifies :restart, resources(:service => "procps")
+    case node["platform"]
+    when "debian", "ubuntu"
+      notifies :restart, resources(:service => "procps")
+    when "rhel", "centos", "amazon"
+      notifies :run, resources(:execute => "apply-sysctl")
+    end
   end
 
   new_resource.updated_by_last_action(true) if settings.updated_by_last_action?
